@@ -8,7 +8,7 @@ pipeline{
 			steps {
                 deleteDir()
                 dir("demo-node-app-main") {
-				    git url: 'https://github.com/chinmoyd1/demo-node-app.git'
+				    git url: 'https://github.com/chinmoyd1/demo-node-app.git',
                         branch: 'main'
                 }
 			}
