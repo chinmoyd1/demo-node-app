@@ -6,13 +6,12 @@ pipeline{
 	stages {
 	    stage('Checkout') {
 			steps {
-				    git url: 'https://github.com/chinmoyd1/demo-node-app.git',
-                        branch: 'main'
+				git url: 'https://github.com/chinmoyd1/demo-node-app.git',
+                    branch: 'main'
 			}
 		}
 		stage('Build') {
 			steps {
-                sh 'ls'
 				sh 'docker build -t rick1113/demo-node-app:0.1 .'
 			}
 		}
