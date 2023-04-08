@@ -4,9 +4,10 @@ pipeline{
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 	}
 	stages {
-	    stage('gitclone') {
+	    stage('Checkout') {
 			steps {
-				git 'https://github.com/chinmoyd1/demo-node-app.git'
+				git url: 'https://github.com/chinmoyd1/demo-node-app.git'
+                    branch: 'main'
 			}
 		}
 		stage('Build') {
