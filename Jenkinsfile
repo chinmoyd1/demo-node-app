@@ -6,8 +6,7 @@ pipeline{
 	stages {
 	    stage('Checkout') {
 			steps {
-                deleteDir()
-                dir("demo-node-app-main") {
+                {
 				    git url: 'https://github.com/chinmoyd1/demo-node-app.git',
                         branch: 'main'
                 }
