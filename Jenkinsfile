@@ -15,6 +15,7 @@ pipeline{
 		}
 		stage('Build') {
 			steps {
+                sh 'ls'
 				sh 'docker build -t rick1113/demo-node-app:0.1 .'
 			}
 		}
