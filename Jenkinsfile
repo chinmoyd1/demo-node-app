@@ -13,7 +13,7 @@ pipeline{
 		stage('Build') {
 			steps {
 				sh '''
-				docker build -t demo-node-app:${BUILD_NUMBER}
+				docker build -t demo-node-app:${BUILD_NUMBER} .
 				'''
 			}
 		}
