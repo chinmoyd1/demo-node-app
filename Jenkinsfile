@@ -20,7 +20,7 @@ pipeline{
 		stage('Test') {
 			steps {
 				sh '''
-				docker run demo-node-app:${BUILD_NUMBER}
+				docker run -d p 3000:3000 demo-node-app:${BUILD_NUMBER}
 				curl localhost:3000
 				docker rm demo-node-app:${BUILD_NUMBER}
 				'''
