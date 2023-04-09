@@ -21,7 +21,7 @@ pipeline{
 		stage('Test') {
 			steps {
 				sh '''
-				docker run  --name demo-node-app ${REGISTRY}:${BUILD_NUMBER} npm run test
+				docker run --name demo-node-app ${REGISTRY}:${BUILD_NUMBER} npm run test
 				'''
 			}
 		}
@@ -35,7 +35,7 @@ pipeline{
 
 	post {
 		always {
-			sh 'docker rm ${REGISTRY}:${BUILD_NUMBER}'
+			sh 'docker rm -f $(docker ps -a -q  --filter ancestor=${REGISTRY}:${BUILD_NUMBER})'
 			sh 'docker rmi ${REGISTRY}:${BUILD_NUMBER}'
 			sh 'docker logout'
 		}
