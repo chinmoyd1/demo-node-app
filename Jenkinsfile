@@ -19,11 +19,27 @@ pipeline{
 		}
 		stage('Test') {
 			steps {
-				sh '''
-				docker run -d -p 3000:3000 demo-node-app:${BUILD_NUMBER}
-				curl localhost:3000
-				docker rm demo-node-app:${BUILD_NUMBER}
-				'''
+				script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    try {
+                        dockerImage.inside() {
+                            // Extracting the PROJECTDIR environment variable from inside the container
+                            def PROJECTDIR = sh(script: 'echo \$PROJECTDIR', returnStdout: true).trim()
+                            // Copying the project into our workspace
+                            sh "cp -r '$PROJECTDIR' '$WORKSPACE'"
+                            // Running the tests inside the new directory
+                            dir("$WORKSPACE$PROJECTDIR") {
+                                //sh "npm test"
+                            }
+							sh "curl localhost:3000"
+                        }
+
+                    } finally {
+                        // Removing the docker image
+                        sh "docker rmi $registry:$BUILD_NUMBER"
+						// docker rm demo-node-app:${BUILD_NUMBER}
+                    }
+                }
 			}
 		}
 		stage('Package') {
