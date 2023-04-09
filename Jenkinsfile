@@ -29,7 +29,7 @@ pipeline{
 		stage('Package') {
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-				sh 'docker push rick1113/demo-node-app:0.1'
+				sh 'docker push rick1113/demo-node-app:${BUILD_NUMBER}'
 			}
 		}
 	}
