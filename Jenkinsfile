@@ -6,8 +6,8 @@ pipeline{
 	stages {
 	    stage('Clone') {
 			steps {
-				git branch: 'main'
-				url: 'https://github.com/chinmoyd1/demo-node-app.git'
+				git url: 'https://github.com/chinmoyd1/demo-node-app.git',
+                    branch: 'main'
 			}
 		}
 		stage('Build') {
