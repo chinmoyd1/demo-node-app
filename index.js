@@ -26,6 +26,9 @@ app.get('/', (req, res) => {
     {
       "id": "5",
       "title": "This is my Fifth Blog Title"
+    },
+    {
+      "envName": process.env.ENV_NAME
     }
   ])
 })
