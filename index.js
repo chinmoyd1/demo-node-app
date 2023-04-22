@@ -29,10 +29,14 @@ app.get('/', (req, res) => {
     },
     {
       "envName": process.env.ENV_NAME
+    },
+    {
+      "envName": process.env.env_name
     }
   ])
 })
 
 app.listen(3000, () => {
+  console.log("env-name: "+process.env.env_name);
   console.log('Server running on port 3000')
 })
